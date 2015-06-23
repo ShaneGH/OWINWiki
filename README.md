@@ -6,7 +6,7 @@ Documentation and source examples on Microsoft OWIN
 1. [Introduction](#introduction)
 2. [Owin Pipeline](#owin-pipeline)
   * [App Delegate](#app-delegate)
-  * [Envirnonment Dictionary](#envirnonment-dictionary)
+  * [Environment Dictionary](#environment-dictionary)
 3. [Katana](#katana)
 
 # Introduction
@@ -32,7 +32,7 @@ Does not really interact with OWIN, but rather with the framework. Given that it
 # Owin Pipeline
 
 So, the host starts the server, the server parses a Http request, then what?
-The host is also in control of the middleware (TODO: is it?), and 3 key components of the middleware are [App Delegate](#app-delegate) and the [Envirnonment Dictionary](#envirnonment-dictionary).
+The host is also in control of the middleware (TODO: is it?), and 3 key components of the middleware are [App Delegate](#app-delegate) and the [Environment Dictionary](#environment-dictionary).
 
 ## App Delegate
 
@@ -41,9 +41,9 @@ The app delegate is in essence:
 Func<IDictionary<string, object>, Task>
 ```
 
-It is the entry point to middleware components where a middleware component receives a dictionary (the [Envirnonment Dictionary](#envirnonment-dictionary)) and returns an asynchronus task to run.
+It is the entry point to middleware components where a middleware component receives a dictionary (the [Environment Dictionary](#envirnonment-dictionary)) and returns an asynchronus task to run.
 
-## Environment Dictionary
+## Envirnonment Dictionary
 The environment dictionary is a collection of objects relevent to the OWIN request. There are certain items populated by the web server which are mandatory in the environment dictionary
 
 |Key Name|Description|
@@ -70,7 +70,7 @@ The environment dictionary is a collection of objects relevent to the OWIN reque
 
 Katana is a microsoft project (set of dlls) which implements OWIN. Katana is the glue between OWIN and IIS (or any other mocrosoft server)
 
-## Hosting Katana
+## Katana Host
 
 Katana can be hosted in 3 ways:
 1 In IIS. The OWIN pipeline is started via HttpModule and HttpHandler. If this option is used, IIS must also be used as the server
@@ -78,6 +78,16 @@ Katana can be hosted in 3 ways:
 3 Via OwinHost.exe. Launches the HttpListener server, finds a startup class by convention
   * Fully customisable with console args
 
+## Katana Server
+
+The katana server depends on which server the ost wants to start up. The server opens a socket, populates the environment dictionary and invokes the middleware.
+
+1. System.Web (IIS)
+2. HttpListener
+3. WebListener (coming soon)
+
+## Middleware
+The middleware is anything which 
 
 
 
