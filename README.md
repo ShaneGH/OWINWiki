@@ -13,7 +13,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
 
 # Introduction
 
-Owin is a set of standards to define an interface between server and web app. It's goals are to decouple server and app and reduce dependency on **IIS** and **System.Web.dll*.
+Owin is a set of standards to define an interface between server and web app. It's goals are to decouple server and app and reduce dependency on **IIS** and **System.Web.dll**.
 
 Owin has 4 layers, from bottom to top:
 
