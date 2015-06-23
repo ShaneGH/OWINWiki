@@ -1,5 +1,5 @@
 # OWINWiki
-Documentation and source examples on Microsoft OWIN
+Documentation and source examples on Microsoft OWIN based on the excelent book https://www.syncfusion.com/resources/techportal/ebooks/owin
 
 # Index
 
@@ -8,6 +8,7 @@ Documentation and source examples on Microsoft OWIN
   * [App Delegate](#app-delegate)
   * [Environment Dictionary](#environment-dictionary)
 3. [Katana](#katana)
+4. [Katana Code Basics](#katana-code-basics)
 
 # Introduction
 
@@ -68,6 +69,8 @@ The environment dictionary is a collection of objects relevent to the OWIN reque
 
 #Katana
 
+![Katana](https://raw.githubusercontent.com/ShaneGH/OWINWiki/master/Content/Katana.png)
+
 Katana is a microsoft project (set of dlls) which implements OWIN. Katana is the glue between OWIN and IIS (or any other mocrosoft server)
 
 ## Katana Host
@@ -87,11 +90,28 @@ The katana server depends on which server the ost wants to start up. The server 
 3. WebListener (coming soon)
 
 ## Middleware
-The middleware is anything which 
 
+![Katana](https://raw.githubusercontent.com/ShaneGH/OWINWiki/master/Content/KatanaMiddleware.png)
 
+[back to top ^](#owinwiki)
 
+# Katana Code Basics
 
+Katana is configured in the `Configuration(IAppBuilder app)` method of the `Startup` class by convention.
+```C#
+namespace RootAssemblyNamespace
+{
+    public partial class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            // ...configure...
+        }
+    }
+}
+```
+
+[back to top ^](#owinwiki)
 
 
 
