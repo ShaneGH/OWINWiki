@@ -24,6 +24,8 @@ The middleware is anything which stands between the server and the web app. It c
 ###Application
 Does not really interact with OWIN, but rather with the framework. Given that it is the primary entry point for the dev, is also used to add configuration to the OWIN pipeline.
 
+[back to top](#owinwiki)
+
 # Owin Pipeline
 
 So, the host starts the server, the server parses a Http request, then what?
