@@ -9,6 +9,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
   * [Environment Dictionary](#environment-dictionary)
 3. [Katana](#katana)
 4. [Katana Code Basics](#katana-code-basics)
+  * [Hello World](#hello-world)
 
 # Introduction
 
@@ -44,7 +45,7 @@ Func<IDictionary<string, object>, Task>
 
 It is the entry point to middleware components where a middleware component receives a dictionary (the [Environment Dictionary](#envirnonment-dictionary)) and returns an asynchronus task to run.
 
-## Envirnonment Dictionary
+## Environment Dictionary
 The environment dictionary is a collection of objects relevent to the OWIN request. There are certain items populated by the web server which are mandatory in the environment dictionary
 
 |Key Name|Description|
@@ -113,7 +114,42 @@ namespace RootAssemblyNamespace
 
 [back to top ^](#owinwiki)
 
+## Hello world
 
+A simple app to write hello world to the response stream
+1. Using the interfaces defined in the OWIN spec
+2. Using katana abstractions
+
+### Pure  OWIN
+```C#
+using AppFunc = Func<IDictionary<string, object>, Task>;
+
+public void Configuration(IAppBuilder app)
+{
+  app.Use(new Func<AppFunc, AppFunc>(next => 
+    (env => { 
+      string text = "Hello World!"; 
+      var response = env["owin.ResponseBody"] as Stream; 
+      var headers = env["owin.ResponseHeaders"] as IDictionary<string, string[]>;
+      headers["Content-Type"] = new[] { "text/plain" };
+      return response.WriteAsync( Encoding.UTF8.GetBytes(text), 0, text.Length); 
+     })
+    ));
+}
+```
+
+### OWIN and Katana
+
+```C#
+public void Configuration(IAppBuilder app) 
+{ 
+  app.Run(context => 
+  { 
+    context.Response.ContentType = "text/plain"; 
+    return context.Response.WriteAsync("Hello World!");
+  });
+}
+```
 
 
 
