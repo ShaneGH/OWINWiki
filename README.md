@@ -24,20 +24,28 @@ The middleware is anything which stands between the server and the web app. It c
 ###Application
 Does not really interact with OWIN, but rather with the framework. Given that it is the primary entry point for the dev, is also used to add configuration to the OWIN pipeline.
 
-[back to top](#owinwiki)
+[back to top ^](#owinwiki)
 
 # Owin Pipeline
 
 So, the host starts the server, the server parses a Http request, then what?
 The host is also in control of the middleware (TODO: is it?), and 3 key components of the middleware are [App Delegate](#app-delegate) and the [Envirnonment Dictionary](#envirnonment-dictionary).
 
+## App Delegate
+
+The app delegate is in essence: 
+```C#
+Func<IDictionary<string, object>, Task>
+```
+
+It is the entry point to middleware components where a middleware component receives a dictionary (the [Envirnonment Dictionary](#envirnonment-dictionary)) and returns an asynchronus task to run.
+
+## Environment Dictionary
+The environment dictionary is a collection of objects relevent to the OWIN request. There are certain items populated by the web server which are mandatory in the environment dictionary
 
 
 
-
-
-
-
+[back to top ^](#owinwiki)
 
 
 
