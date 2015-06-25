@@ -15,8 +15,9 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
-/packages/
-!packages/repositories.config
+**/packages/*
+!**/packages/repositories.config
+
 
 # Roslyn cache directories
 *.ide/
