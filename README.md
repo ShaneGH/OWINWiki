@@ -12,6 +12,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
   * [Hello World](#hello-world)
 5. [Katana Example 1: IIS hosted app](#katana-example-1-iis-hosted-app)
 6. [Katana Example 2: Self hosted app](#katana-example-2-self-hosted-app)
+7. [Katana Example 3: OwinHost.exe](#katana-example-3-owinhost-exe)
 
 # Introduction
 
@@ -252,6 +253,10 @@ public class Startup
     }
 }
 ```
+
+[back to top ^](#owinwiki)
+
+#Katana Example 3: OwinHost.exe
 
 [back to top ^](#owinwiki)
 
