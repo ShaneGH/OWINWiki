@@ -13,6 +13,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
 5. [Katana Example 1: IIS hosted app](#katana-example-1-iis-hosted-app)
 6. [Katana Example 2: Self hosted app](#katana-example-2-self-hosted-app)
 7. [Katana Example 3: OwinHost.exe](#katana-example-3-owinhostexe)
+8. [Changing the Startup Class](#changing-the-startup-class)
 
 # Introduction
 
@@ -279,6 +280,26 @@ You can create an asp mvc application instead of a dll. The benefits of this are
 Go to the web tab of the project settings and you can now specify the server you wish to use. You can then just press F5 and debug as normal.
 
 ![OwinServer](https://raw.githubusercontent.com/ShaneGH/OWINWiki/master/Content/OwinServer.png)
+
+[back to top ^](#owinwiki)
+
+#Changing the Startup Class
+
+The `Startup` class can be specified in many different ways. Each item of the list overrides previous items.
+1. By convention, using the `Configuration` method of the `Startup` class.
+2. By an assembly attribute
+  * `[assembly: OwinStartup(typeof(MyStartupClass), "MyStartupMethod")]`.
+  * Or, `[assembly: OwinStartup("Default", typeof(MyStartupClass))]`. Using this method you can have multiple startup classes. See [section TODO]
+3. In the config file: `<appSettings> <add key="owin:appStartup" value="MyApp.MyStartupClass" /> </appSettings>`
+4. Custom host `WebApp.Start<MyStartupClass>("http://localhost:9000");`
+5. Command line arg to OwinHost.exe
+ 
+###Friendly Name
+
+You can specify multiple startup classes via the `[assembly: OwinStartup]` attribute and choose which one via the config file or command line args. Just use the `friendlyName` arg of the `OwinStartup` attribute and specify it as
+* The `value` to the `owinStartup` config file setting --OR--
+* The first command line arg for OwinHost.exe
+
 
 [back to top ^](#owinwiki)
 
