@@ -10,6 +10,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
 3. [Katana](#katana)
 4. [Katana Code Basics](#katana-code-basics)
   * [Hello World](#hello-world)
+5. [Example 1: Self hosted app](#example-1-self-hosted-app)
 
 # Introduction
 
@@ -152,6 +153,68 @@ public void Configuration(IAppBuilder app)
 }
 ```
 
+[back to top ^](#owinwiki)
+
+#Example 1: Self hosted app
+
+See OwinWiki.Examples.SelfHostedApp
+
+## Key points
+
+1. Use package Microsoft.Owin.SelfHost
+2. Use Startup by convention: the `Configuration` method of the `Startup` class.
+3. Add 3 middleware items
+  1. A home page
+  2. An error screen
+  3. A web framework (hello world)
+
+## Code
+
+```C#
+public class Startup
+{
+    static void Main(string[] args)
+    {
+        using (WebApp.Start<Startup>("http://localhost:9000"))
+        {
+            Console.WriteLine("Launched site on http://localhost:9000");
+            Console.WriteLine("Press [space] to quit...");
+
+            while (Console.ReadKey(true).KeyChar != ' ') ;
+        }
+    }
+
+    public void Configuration(IAppBuilder app) 
+    {
+        // Middleware 1
+        // configure katana to display the OWIN 
+        // welcome page at url "/"
+        app.UseWelcomePage("/");
+
+        // Middleware 2
+        // configure a yellow screen of death
+        app.UseErrorPage(); 
+
+        // Middleware 3
+        // Our web framework
+        app.Run(context => 
+        { 
+            Trace.WriteLine(context.Request.Uri); 
+                
+            //Line to show the ErrorPage 
+            if (context.Request.Path.ToString().Equals("/throwexception")) 
+                throw new Exception("You requested the wrong URL :)");
+                
+            context.Response.ContentType = "text/plain"; 
+            return context.Response.WriteAsync("Hello, world."); 
+        }); 
+    }
+}
+```
+
+[back to top ^](#owinwiki)
+
+[back to top ^](#owinwiki)
 
 
 
