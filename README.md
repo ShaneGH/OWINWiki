@@ -10,6 +10,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
 3. [Katana](#katana)
 4. [Katana Code Basics](#katana-code-basics)
   * [Hello World](#hello-world)
+5. [Example 1: Self hosted app](example-1--self-hosted-app)
 
 # Introduction
 
@@ -152,6 +153,11 @@ public void Configuration(IAppBuilder app)
 }
 ```
 
+[back to top ^](#owinwiki)
+
+#Example 1: Self hosted app
+
+[back to top ^](#owinwiki)
 
 
 
