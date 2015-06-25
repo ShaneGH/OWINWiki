@@ -289,7 +289,7 @@ The `Startup` class can be specified in many different ways. Each item of the li
 1. By convention, using the `Configuration` method of the `Startup` class.
 2. By an assembly attribute
   * `[assembly: OwinStartup(typeof(MyStartupClass), "MyStartupMethod")]`.
-  * Or, `[assembly: OwinStartup("Default", typeof(MyStartupClass))]`. Using this method you can have multiple startup classes. See [section TODO]
+  * Or, `[assembly: OwinStartup("Default", typeof(MyStartupClass))]`. Using this method you can have multiple startup classes. See [the next section](#friendly-name)..
 3. In the config file: `<appSettings> <add key="owin:appStartup" value="MyApp.MyStartupClass" /> </appSettings>`
 4. Custom host `WebApp.Start<MyStartupClass>("http://localhost:9000");`
 5. Command line arg to OwinHost.exe
@@ -297,7 +297,7 @@ The `Startup` class can be specified in many different ways. Each item of the li
 ###Friendly Name
 
 You can specify multiple startup classes via the `[assembly: OwinStartup]` attribute and choose which one via the config file or command line args. Just use the `friendlyName` arg of the `OwinStartup` attribute and specify it as
-* The `value` to the `owinStartup` config file setting --OR--
+* The `value` to the `owinStartup` config file setting --or--
 * The first command line arg for OwinHost.exe
 
 
