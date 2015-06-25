@@ -12,7 +12,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
   * [Hello World](#hello-world)
 5. [Katana Example 1: IIS hosted app](#katana-example-1-iis-hosted-app)
 6. [Katana Example 2: Self hosted app](#katana-example-2-self-hosted-app)
-7. [Katana Example 3: OwinHost.exe](#katana-example-3-owinhost-exe)
+7. [Katana Example 3: OwinHost.exe](#katana-example-3-owinhostexe)
 
 # Introduction
 
@@ -257,6 +257,28 @@ public class Startup
 [back to top ^](#owinwiki)
 
 #Katana Example 3: OwinHost.exe
+
+See OwinWiki.Examples.OwinHost
+
+##Key points
+1. Can be an ASP web app or a dll
+2. This time, add the Startup class with the Add Item -> Owin Startup class option
+  * This will automatically add NuGet references
+3. Add the OwinHost NuGet package
+  * It resides in the tools folder of the OwinHost package
+  * Loads all of the assemblies in the "/bin" folder, not the "bin/debug" folder
+    * (so chage the output path in the proj properties)
+4. Launch OwinHost with a console window
+  * "../../packages/OwinHost.3.0.1/tools/OwinHost.exe"
+5. Usa the `-h` option to view args
+
+##Using a web app instead of a dll
+
+You can create an asp mvc application instead of a dll. The benefits of this are, in debugging.
+
+Go to the web tab of the project settings and you can now specify the server you wish to use. You can then just press F5 and debug as normal.
+
+![OwinServer](https://raw.githubusercontent.com/ShaneGH/OWINWiki/master/Content/OwinServer.png)
 
 [back to top ^](#owinwiki)
 
