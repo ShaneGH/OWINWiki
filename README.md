@@ -286,6 +286,7 @@ Go to the web tab of the project settings and you can now specify the server you
 #Changing the Startup Class
 
 The `Startup` class can be specified in many different ways. Each item of the list overrides previous items.
+
 1. By convention, using the `Configuration` method of the `Startup` class.
 2. By an assembly attribute
   * `[assembly: OwinStartup(typeof(MyStartupClass), "MyStartupMethod")]`.
