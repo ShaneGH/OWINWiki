@@ -158,60 +158,35 @@ public void Configuration(IAppBuilder app)
 
 #Katana Example 1: IIS hosted app
 
-See OwinWiki.Examples.SelfHostedApp
+See OwinWiki.Examples.IISHostedApp
 
 ## Key points
 
-1. Use package Microsoft.Owin.SelfHost
-2. Use Startup by convention: the `Configuration` method of the `Startup` class.
-3. Uses the HttpListener server.
-4. Add 3 middleware items
-  1. A home page
-  2. An error screen
-  3. A web framework (hello world)
-5. Microsoft.Owin.Diagnostics exposes the `WelcomPage` and `ErrorPage` extensions.
-6. Check the exception case, it is very detailed, giving a dump of the environment dictionary
+1. Create an empty ASP web app
+2. Use package Microsoft.Owin.Host.SystemWeb
+3. Use Startup by convention: the `Configuration` method of the `Startup` class.
+4. The app template also adds an assembly attribute to specify the `Startup` class (overkill I guess)
+  * `[assembly: OwinStartup(typeof(OwinWiki.Examples.IISHostedApp.Startup))]`
 
 ## Code
 
 ```C#
-public class Startup
+[assembly: OwinStartup(typeof(OwinWiki.Examples.IISHostedApp.Startup))]
+
+namespace OwinWiki.Examples.IISHostedApp
 {
-    static void Main(string[] args)
+    public class Startup
     {
-        using (WebApp.Start<Startup>("http://localhost:9000"))
+        public void Configuration(IAppBuilder app)
         {
-            Console.WriteLine("Launched site on http://localhost:9000");
-            Console.WriteLine("Press [space] to quit...");
+            app.Run(context => 
+            {
+                context.Response.ContentType = "text/plain";
 
-            while (Console.ReadKey(true).KeyChar != ' ') ;
+                // say hello to the last segment in the Url path
+                return context.Response.WriteAsync("Hello " + (context.Request.Uri.Segments.Last() ?? "world"));
+            });
         }
-    }
-
-    public void Configuration(IAppBuilder app) 
-    {
-        // Middleware 1
-        // configure katana to display the OWIN 
-        // welcome page at url "/"
-        app.UseWelcomePage("/");
-
-        // Middleware 2
-        // configure a yellow screen of death
-        app.UseErrorPage(); 
-
-        // Middleware 3
-        // Our web framework
-        app.Run(context => 
-        { 
-            Trace.WriteLine(context.Request.Uri); 
-                
-            //Line to show the ErrorPage 
-            if (context.Request.Path.ToString().Equals("/throwexception")) 
-                throw new Exception("You requested the wrong URL :)");
-                
-            context.Response.ContentType = "text/plain"; 
-            return context.Response.WriteAsync("Hello, world."); 
-        }); 
     }
 }
 ```
