@@ -16,7 +16,9 @@ namespace OwinWiki.Examples.IISHostedApp
             app.Run(context => 
             {
                 context.Response.ContentType = "text/plain";
-                return context.Response.WriteAsync("Hello world");
+
+                // say hello to the last segment in the Url path
+                return context.Response.WriteAsync("Hello " + (context.Request.Uri.Segments.Last() ?? "world"));
             });
         }
     }

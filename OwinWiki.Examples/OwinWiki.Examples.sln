@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwinWiki.Examples.SelfHoste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwinWiki.Examples.IISHostedApp", "scm\OwinWiki.Examples.IISHostedApp\OwinWiki.Examples.IISHostedApp.csproj", "{90385FC2-8C09-4E5B-8B26-1CA3D273D13E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwinWiki.Examples.OwinHost", "scm\OwinWiki.Examples.OwinHost\OwinWiki.Examples.OwinHost.csproj", "{6AD2DDFF-FCB5-44F9-9957-9B32D57CCF81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{90385FC2-8C09-4E5B-8B26-1CA3D273D13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90385FC2-8C09-4E5B-8B26-1CA3D273D13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90385FC2-8C09-4E5B-8B26-1CA3D273D13E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD2DDFF-FCB5-44F9-9957-9B32D57CCF81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD2DDFF-FCB5-44F9-9957-9B32D57CCF81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD2DDFF-FCB5-44F9-9957-9B32D57CCF81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD2DDFF-FCB5-44F9-9957-9B32D57CCF81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
