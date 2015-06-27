@@ -351,9 +351,9 @@ app.Use(new Func<AppFunc, AppFunc>(next => (async env =>
 	var writer = new StreamWriter(response) { AutoFlush = true };
 
 	// surround output of the next middleware component with flags
-	await writer.WriteAsync("\t\t\tMW 4 - Before (RawOwinMiddleware)\r\n");
+	await writer.WriteAsync("Before");
 	await next.Invoke(env);
-	await writer.WriteAsync("\t\t\tMW 4 - After (RawOwinMiddleware)\r\n");
+	await writer.WriteAsync("After");
 })));
 ```
 
@@ -378,9 +378,9 @@ public class TraceMiddleware
 	    var writer = new StreamWriter(response) { AutoFlush = true };
 
 	    // surround output of the next middleware component with flags
-	    await writer.WriteAsync("\t\t\tMW 4 - Before (RawOwinMiddleware)\r\n");
+	    await writer.WriteAsync("Before");
         await Next.Invoke(environment);
-	    await writer.WriteAsync("\t\t\tMW 4 - After (RawOwinMiddleware)\r\n");
+	    await writer.WriteAsync("After");
     }
 }
 ```
@@ -388,6 +388,12 @@ And you can invoke it like this
 ```C#
 app.Use(typeof(TraceMiddleware));
 ```
+
+###Helpers
+
+You can use the helpers in `Microsoft.Owin.dll` to
+* simplify the `Use` delegate and stream writing.
+* package components by inheriting from `OwinMiddleware` and overriding the `Invoke` method.
 
 [back to top ^](#owinwiki)
 
