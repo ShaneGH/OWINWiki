@@ -15,6 +15,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
 7. [Katana Example 3: OwinHost.exe](#katana-example-3-owinhostexe)
 8. [Changing the Startup Class](#changing-the-startup-class)
 9. [Using Multiple Frameworks (Nancy and SignalR)](#using-multiple-frameworks-nancy-and-signalr)
+10. [Writing Custom Middleware](#writing-custom-middleware)
 
 # Introduction
 
@@ -333,6 +334,62 @@ The code is in the OwinWiki.Examples.MultipleFrameworks project.
 
 [back to top ^](#owinwiki)
 
+#Writing Custom Middleware
+
+Middleware components look like this:
+```C#
+using AppFunc = Func<IDictionary<string, object>, Task>;
+using MiddlewareDelegate = Func<AppFunc, AppFunc>;
+```
+The middleware takes in the AppFunc for the -next- middleware component and returns it's own func. It then has the responsibility of executing the next component.
+
+```C#
+app.Use(new Func<AppFunc, AppFunc>(next => (async env =>
+{
+	// get output stream
+	var response = env["owin.ResponseBody"] as Stream;
+	var writer = new StreamWriter(response) { AutoFlush = true };
+
+	// surround output of the next middleware component with flags
+	await writer.WriteAsync("\t\t\tMW 4 - Before (RawOwinMiddleware)\r\n");
+	await next.Invoke(env);
+	await writer.WriteAsync("\t\t\tMW 4 - After (RawOwinMiddleware)\r\n");
+})));
+```
+
+##Packaging middleware components
+
+You can package a middleware component in a class which has a constructor which accepts the AppFunc of the next component and an Invoke method which accepts the EnvironmentDictionary.
+
+```C#
+public class TraceMiddleware
+{
+    public readonly Func<IDictionary<string, object>, Task> Next;
+
+    public TraceMiddleware(Func<IDictionary<string, object>, Task> next)
+    {
+        Next = next;
+    }
+
+    public async Task Invoke(IDictionary<string, object> environment)
+    {
+	    // get output stream
+	    var response = environment["owin.ResponseBody"] as Stream;
+	    var writer = new StreamWriter(response) { AutoFlush = true };
+
+	    // surround output of the next middleware component with flags
+	    await writer.WriteAsync("\t\t\tMW 4 - Before (RawOwinMiddleware)\r\n");
+        await Next.Invoke(environment);
+	    await writer.WriteAsync("\t\t\tMW 4 - After (RawOwinMiddleware)\r\n");
+    }
+}
+```
+And you can invoke it like this
+```C#
+app.Use(typeof(TraceMiddleware));
+```
+
+[back to top ^](#owinwiki)
 
 [back to top ^](#owinwiki)
 
