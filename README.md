@@ -14,7 +14,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
 6. [Katana Example 2: Self hosted app](#katana-example-2-self-hosted-app)
 7. [Katana Example 3: OwinHost.exe](#katana-example-3-owinhostexe)
 8. [Changing the Startup Class](#changing-the-startup-class)
-9. [Using Multiple Frameworks (Nancy and SignalR)](#using-multiple-frameworks-nancy-and-Signalr)
+9. [Using Multiple Frameworks (Nancy and SignalR)](#using-multiple-frameworks-nancy-and-signalr)
 
 # Introduction
 
