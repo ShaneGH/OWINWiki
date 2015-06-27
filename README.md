@@ -14,6 +14,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
 6. [Katana Example 2: Self hosted app](#katana-example-2-self-hosted-app)
 7. [Katana Example 3: OwinHost.exe](#katana-example-3-owinhostexe)
 8. [Changing the Startup Class](#changing-the-startup-class)
+9. [Using Multiple Frameworks (Nancy and SignalR)](#using-multiple-frameworks-nancy-and-Signalr)
 
 # Introduction
 
@@ -303,6 +304,35 @@ You can specify multiple startup classes via the `[assembly: OwinStartup]` attri
 
 
 [back to top ^](#owinwiki)
+
+#Using Multiple Frameworks (Nancy and SignalR)
+
+The following section documents an app wich uses both the Nancy framework and SignalR.
+
+The code is in the OwinWiki.Examples.MultipleFrameworks project.
+
+###Things to note
+* Using a self hosted .exe
+* Packages:
+  * Microsoft.Owin.SelfHost
+  * Nancy.Owin
+  * Microsoft.AspNet.SignalR.SelfHost
+  * Microsoft.Owin.StaticFiles
+  * jQuery 1.6.4
+  * Microsoft.AspNet.SignalR.JS
+* 3 Middleware options:
+  * SignalR
+  * Nancy
+  * Custom 404
+* Nancy is configured in HomeModule.cs
+  * It has a method which accesses the Owin environment dictionary
+* SignalR is configured on the /Chat/ path only
+* Got to Chat/signalr/negotiate or Chat/signalr/hubs to verify signalR
+* All static files must be placed in the files/ folder
+* Build copy to output dir for static files must be Copy Always
+
+[back to top ^](#owinwiki)
+
 
 [back to top ^](#owinwiki)
 
