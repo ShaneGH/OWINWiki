@@ -34,6 +34,7 @@ The middleware is a stack of components. Each component has 2 objectives:
 
 1. Execute it's functionality given the Owin context
 2. Execute the next middleware component in the stack if necessary
+
 Your application framework will be a piece of middleware
 
 ###Application
