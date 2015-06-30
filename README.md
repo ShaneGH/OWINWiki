@@ -27,10 +27,13 @@ Owin has 4 layers, from bottom to top:
 The host is responsible for hosting the server. It's primary action is to start and stop the server
 
 ###Server
-The server is responsible for listening to sockets and sending/receiving packets. It then passes data to the middleware
+The server is responsible for listening to sockets and sending/receiving packets. It then passes data (owin context) to the middleware
 
 ###Middleware
-The middleware is anything which stands between the server and the web app. It can be anything from a simple logger to a web framework such as WebAPI
+The middleware is a stack of components. Each component has 2 objectives:
+1. Execute it's functionality given the Owin context
+2. Execute the next middleware component in the stack if necessary
+Your application framework will be a piece of middleware
 
 ###Application
 Does not really interact with OWIN, but rather with the framework. Given that it is the primary entry point for the dev, is also used to add configuration to the OWIN pipeline.
