@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Signal R chat
+    </title>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="message" />
+        <input type="button" id="send" value="Send" />
+        <ul id="discussion"></ul>
+    </div>
+    <script type="text/javascript" src="Scripts/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script type="text/javascript" src="http://localhost:9876/Chat/SignalR/hubs"></script>
+
+    <script>
+        $(function () {
+            $.connection.hub.URL = "http://localhost:9876/Chat/signalR";
+            var chat = $.connection.chatHub;
+            chat.client.addMessage = function (message) {
+                var encodedMessage = $("<div></div>").text(message).html();
+                $("#discussion").append("<li>" + encodedMessage + "</li>");
+            };
+
+            $.connection.hub.start().done(function () {
+                $("#send").click(function () {
+                    chat.server.send($("#message").val());
+                    $("#message").val("").focus();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
