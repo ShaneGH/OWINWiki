@@ -5,8 +5,8 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
 
 1. [Introduction](#introduction)
 2. [Owin Pipeline](#owin-pipeline)
-  * [App Delegate](#app-delegate)
-  * [Environment Dictionary](#environment-dictionary)
+    * [App Delegate](#app-delegate)
+    * [Environment Dictionary](#environment-dictionary)
 3. [Katana](#katana)
 4. [Katana Code Basics](#katana-code-basics)
   * [Hello World](#hello-world)
