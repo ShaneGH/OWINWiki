@@ -26,10 +26,10 @@ Owin has 4 layers, from bottom to top:
 ### Host
 The host is responsible for hosting the server. It's primary action is to start and stop the server
 
-###Server
+### Server
 The server is responsible for listening to sockets and sending/receiving packets. It then passes data (owin context) to the middleware
 
-###Middleware
+### Middleware
 The middleware is a stack of components. Each component has 2 objectives:
 
 1. Execute it's functionality given the Owin context
@@ -37,7 +37,7 @@ The middleware is a stack of components. Each component has 2 objectives:
 
 Your application framework will be a piece of middleware
 
-###Application
+### Application
 Does not really interact with OWIN, but rather with the framework. Given that it is the primary entry point for the dev, is also used to add configuration to the OWIN pipeline.
 
 [back to top ^](#owinwiki)
@@ -79,7 +79,7 @@ The environment dictionary is a collection of objects relevent to the OWIN reque
 
 [back to top ^](#owinwiki)
 
-#Katana
+# Katana
 
 ![Katana](https://raw.githubusercontent.com/ShaneGH/OWINWiki/master/Content/Katana.png)
 
@@ -165,7 +165,7 @@ public void Configuration(IAppBuilder app)
 
 [back to top ^](#owinwiki)
 
-#Katana Example 1: IIS hosted app
+# Katana Example 1: IIS hosted app
 
 See OwinWiki.Examples.IISHostedApp
 
@@ -202,7 +202,7 @@ namespace OwinWiki.Examples.IISHostedApp
 
 [back to top ^](#owinwiki)
 
-#Katana Example 2: Self hosted app
+# Katana Example 2: Self hosted app
 
 See OwinWiki.Examples.SelfHostedApp
 
@@ -264,11 +264,11 @@ public class Startup
 
 [back to top ^](#owinwiki)
 
-#Katana Example 3: OwinHost.exe
+# Katana Example 3: OwinHost.exe
 
 See OwinWiki.Examples.OwinHost
 
-##Key points
+## Key points
 1. Can be an ASP web app or a dll
 2. This time, add the Startup class with the Add Item -> Owin Startup class option
   * This will automatically add NuGet references
@@ -280,7 +280,7 @@ See OwinWiki.Examples.OwinHost
   * "../../packages/OwinHost.3.0.1/tools/OwinHost.exe"
 5. Usa the `-h` option to view args
 
-##Using a web app instead of a dll
+## Using a web app instead of a dll
 
 You can create an asp mvc application instead of a dll. The benefits of this are, in debugging.
 
@@ -290,7 +290,7 @@ Go to the web tab of the project settings and you can now specify the server you
 
 [back to top ^](#owinwiki)
 
-#Changing the Startup Class
+# Changing the Startup Class
 
 The `Startup` class can be specified in many different ways. Each item of the list overrides previous items.
 
@@ -302,7 +302,7 @@ The `Startup` class can be specified in many different ways. Each item of the li
 4. Custom host `WebApp.Start<MyStartupClass>("http://localhost:9000");`
 5. Command line arg to OwinHost.exe
  
-###Friendly Name
+### Friendly Name
 
 You can specify multiple startup classes via the `[assembly: OwinStartup]` attribute and choose which one to use via the config file or command line args. Just use the `friendlyName` arg of the `OwinStartup` attribute and specify it as
 * The `value` to the `owinStartup` config file setting --or--
@@ -311,13 +311,13 @@ You can specify multiple startup classes via the `[assembly: OwinStartup]` attri
 
 [back to top ^](#owinwiki)
 
-#Using Multiple Frameworks (Nancy and SignalR)
+# Using Multiple Frameworks (Nancy and SignalR)
 
 The following section documents an app wich uses both the Nancy framework and SignalR.
 
 The code is in the OwinWiki.Examples.MultipleFrameworks project.
 
-###Things to note
+### Things to note
 * Using a self hosted .exe
 * Packages:
   * Microsoft.Owin.SelfHost
@@ -339,7 +339,7 @@ The code is in the OwinWiki.Examples.MultipleFrameworks project.
 
 [back to top ^](#owinwiki)
 
-#Writing Custom Middleware
+# Writing Custom Middleware
 
 Middleware components look like this:
 ```C#
@@ -362,7 +362,7 @@ app.Use(new Func<AppFunc, AppFunc>(next => (async env =>
 })));
 ```
 
-##Packaging middleware components
+## Packaging middleware components
 
 You can package a middleware component in a class which has a constructor which accepts the AppFunc of the next component and an Invoke method which accepts the EnvironmentDictionary.
 
@@ -394,7 +394,7 @@ And you can invoke it like this
 app.Use(typeof(TraceMiddleware));
 ```
 
-###Helpers
+### Helpers
 
 You can use the helpers in `Microsoft.Owin.dll` to
 * simplify the `Use` delegate and stream writing.
@@ -403,26 +403,4 @@ You can use the helpers in `Microsoft.Owin.dll` to
 [back to top ^](#owinwiki)
 
 [back to top ^](#owinwiki)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
