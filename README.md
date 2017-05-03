@@ -9,7 +9,7 @@ Documentation and source examples on Microsoft OWIN based on the excelent book h
     * [Environment Dictionary](#environment-dictionary)
 3. [Katana](#katana)
 4. [Katana Code Basics](#katana-code-basics)
-  * [Hello World](#hello-world)
+    * [Hello World](#hello-world)
 5. [Katana Example 1: IIS hosted app](#katana-example-1-iis-hosted-app)
 6. [Katana Example 2: Self hosted app](#katana-example-2-self-hosted-app)
 7. [Katana Example 3: OwinHost.exe](#katana-example-3-owinhostexe)
