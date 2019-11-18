@@ -256,6 +256,7 @@ public class Startup
                 throw new Exception("You requested the wrong URL :)");
                 
             context.Response.ContentType = "text/plain"; 
+	    context.Response.ContentLength = Encoding.UTF8.GetByteCount("Hello, world.");
             return context.Response.WriteAsync("Hello, world."); 
         }); 
     }
